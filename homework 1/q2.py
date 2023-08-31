@@ -30,7 +30,6 @@ def main():
 
     w_0, w_1 = get_coef(x, t)
     print(f"w_0 = {w_0}\nw_1 = {w_1}")
-    # print(f"Equation: t = {round(w_0, 2)} + {round(w_1, 2)}x")
     print("\n\nProjecting winning times up to 2008...\n\n")
     correct_times = { 1992: 9.96, 1996: 9.84,
                       2000: 9.87, 2004: 9.85, 2008: 9.69 }
