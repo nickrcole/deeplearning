@@ -1,17 +1,13 @@
 import csv
 import numpy as np
 
-
 def get_coef(X, t):
 
-    X_transpose = np.transpose(X)
-    X_transpose_X = np.dot(X_transpose, X)
-    X_transpose_X_inverse = np.linalg.inv(X_transpose_X)
-    X_transpose_t = np.dot(X_transpose, t)
-    w = np.dot(X_transpose_X_inverse, X_transpose_t)
-
+    XtX = np.dot(X.T, X)
+    XtXi = np.linalg.inv(XtX)
+    XTt = np.dot(X.T, t)
+    w = np.dot(XtXi, XTt)
     return w[0], w[1]
-
 
 def main():
 
@@ -27,6 +23,8 @@ def main():
 
     x = np.array(x_list)
     t = np.array(t_list)
+
+    print(x)
 
     w_0, w_1 = get_coef(x, t)
     print(f"w_0 = {w_0}\nw_1 = {w_1}")
