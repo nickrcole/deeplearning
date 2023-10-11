@@ -10,7 +10,7 @@ def logistic_loss(y_true, y_pred):
     return - (y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
 
 def train_newton(X, y, theta):
-    losses = []  # Store the loss values at each iteration
+    losses = []
     while True:
         p = np.array(sigmoid(X.dot(theta[:, 0])), ndmin=2).T
         W = np.diag((p * (1 - p))[:, 0])
@@ -22,14 +22,13 @@ def train_newton(X, y, theta):
             break
         theta = theta + step
 
-        # Calculate and store the loss value
         loss = logistic_loss(y, p)
         losses.append(loss[0])
     
     return losses
 
 def train_gd(X, y, theta, learning_rate=0.001):
-    losses = []  # Store the loss values at each iteration
+    losses = []
     while True:
         p = np.array(sigmoid(X.dot(theta[:, 0])), ndmin=2).T
         grad = X.T.dot(y - p)
@@ -38,19 +37,10 @@ def train_gd(X, y, theta, learning_rate=0.001):
         step = learning_rate * grad
         theta = theta + step
 
-        # Calculate and store the loss value
         loss = logistic_loss(y, p)
         losses.append(loss[0])
     
     return losses
-
-def test_model(X, y, theta):
-    prob = np.array(sigmoid(X.dot(theta)))
-    
-    prob = np.greater(prob, 0.5*np.ones((prob.shape[1],1)))
-    accuracy = np.count_nonzero(np.equal(prob, y))/prob.shape[0] * 100
-
-    return accuracy
 
 def main():
     data = pd.read_csv("q4data.csv")
