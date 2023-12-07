@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import sys
 import math
 
-K_VALUE = 3
+K_VALUE = 4
 CONVERGENCE_THRESHOLD = 1e-4
 
 def import_data():
